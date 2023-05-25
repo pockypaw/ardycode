@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-sm-3 col-md-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Mau berapa banyak bintang ?" name="nilai">
+                            <input type="text" class="form-control" placeholder="Masukan Angka !" name="nilai">
                             <div class="input-group-append">
                                 <button class="btn btn-dark" type="submit">Kirim</button>
                             </div>
