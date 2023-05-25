@@ -53,11 +53,12 @@
         $GapokSetahun = 0;
         $num = 1;
         $keys = array_keys($datakaryawan);
+        echo "<div class='table-responsive'>";
         echo "<table class='table table-dark table-striped'>";
         echo "<tr><th>No.</th><th>Name</th><th>Jenis Kelamin</th><th>Tahun Masuk</th><th>Tahun Lahir</th><th>Umur</th><th>Masa Kerja</th><th>Jabatan</th><th>Penghasilan</th><th>Gapok Setahun</th></tr>";
         for ($i = 0; $i < count($datakaryawan); $i++) {
             echo "<tr>";
-            echo "<td>".$num++."</td>";
+            echo "<td>" . $num++ . "</td>";
             foreach ($datakaryawan[$keys[$i]] as $key => $value) {
                 if ($key == 'Tahun Lahir') {
                     $Tahun_lahir = $value;
@@ -74,11 +75,11 @@
                 }
                 if ($key == 'Penghasilan') {
                     $GapokSetahun = $value;
-                    $value = 'Rp.'.number_format($GapokSetahun, 0, ',', '.');
+                    $value = 'Rp.' . number_format($GapokSetahun, 0, ',', '.');
                 }
                 if ($key == 'Gapok Setahun') {
                     $formattedNumber = gapokSetahun($GapokSetahun);
-                    $value = 'Rp.'.number_format($formattedNumber, 0, ',', '.');
+                    $value = 'Rp.' . number_format($formattedNumber, 0, ',', '.');
                 }
                 echo "<td>$value</td>";
             }
@@ -86,6 +87,7 @@
         }
         echo "</table>";
         ?>
+    </div>
     </div>
 
 </body>
