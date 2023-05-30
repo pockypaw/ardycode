@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
     <style>
         label {
-            color:#2C3333;
+            color: #2C3333;
         }
-        #example_info{
-            color:#2C3333;
+
+        #example_info {
+            color: #2C3333;
         }
-        .form-label{
-            color:white;
+
+        .form-label {
+            color: white;
         }
     </style>
 </head>
@@ -31,7 +33,7 @@
     $hargaTiket = '';
 
     // File json yang akan dibaca (full path file)
-    $file = "https://ardycode.vercel.app/api/dataPenerbangan.php";
+    $file = "http://localhost/jwd/test/data.php";
 
     // Mendapatkan file json
     $dataPenerbangan = file_get_contents($file);
@@ -110,12 +112,33 @@
 
 
         if (isset($_POST['form-submit'])) {
-            $data[] = [$namaMaskapai, $pilih1, $pilih2, $hargaTiket, $tax, $totalPrice];
+            $data = [$namaMaskapai, $pilih1, $pilih2, $hargaTiket, $tax, $totalPrice];
             // Mengencode data menjadi JSON
-            $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
+            // $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
+
+            // Membaca file awal
+            $originalData = file_get_contents("data.php");
+
+            // Mencari posisi untuk memasukkan array baru
+            $position = strpos($originalData, ");");
+
+            if ($position !== false) {
+                // Konstruksi kode untuk array baru
+                $newArrayCode = ", " . var_export($data, true);
+
+                // Menyisipkan array baru ke dalam data awal
+                $appendedData = substr_replace($originalData, $newArrayCode, $position, 0);
+
+                // Menulis data yang telah dimodifikasi ke dalam file
+                file_put_contents("data.php", $appendedData);
+
+                echo "Array berhasil dimasukkan.";
+            } else {
+                echo "Gagal menemukan posisi untuk memasukkan array.";
+            }
 
             // Menyimpan data ke dalam dataPenerbangan.json
-            $dataPenerbangan = file_put_contents($file, $jsonfile);
+            // $dataPenerbangan = file_put_contents($file, $jsonfile);
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         } else {
@@ -233,7 +256,7 @@
                     ?>
                 </tbody>
             </table>
-         
+
         </div>
     </div>
 
