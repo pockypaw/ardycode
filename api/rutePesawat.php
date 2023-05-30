@@ -33,7 +33,7 @@
     $hargaTiket = '';
 
     // File json yang akan dibaca (full path file)
-    $file = "http://localhost/jwd/test/data.php";
+    $file = "https://ardycode.vercel.app/api/dataPenerbangan.php";
 
     // Mendapatkan file json
     $dataPenerbangan = file_get_contents($file);
@@ -117,7 +117,7 @@
             // $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
 
             // Membaca file awal
-            $originalData = file_get_contents("data.php");
+            $originalData = file_get_contents("https://ardycode.vercel.app/api/dataPenerbangan.php");
 
             // Mencari posisi untuk memasukkan array baru
             $position = strpos($originalData, ");");
