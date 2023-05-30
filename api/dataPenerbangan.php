@@ -87,7 +87,7 @@
         110000,
         310000
     ]
-]
+];
     
     // Convert data to JSON
 $jsonData = json_encode($data);
