@@ -1,13 +1,4 @@
 {
-    "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["db.json"]
-      }
-    }
-  ],
     "functions": {
       "api/*.php": {
         "runtime": "vercel-php@0.6.0"
