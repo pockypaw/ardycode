@@ -1,4 +1,4 @@
-[
+<?php $data = [
     [
         "Adam Air",
         "Soekarno-Hatta (CGK)",
@@ -88,3 +88,13 @@
         310000
     ]
 ]
+    
+    // Convert data to JSON
+$jsonData = json_encode($data);
+
+// Set headers
+header('Content-Type: application/json');
+
+// Output the JSON
+echo $jsonData;
+    ?>
