@@ -108,7 +108,6 @@
 
         $tax = Tax($airportTax1, $airportTax2);
         $totalPrice = TotalPrice($tax, $hargaTiket);
-ob_start();
 
         if (isset($_POST['form-submit'])) {
             $data = [$namaMaskapai, $pilih1, $pilih2, $hargaTiket, $tax, $totalPrice];
@@ -144,8 +143,6 @@ ob_start();
             echo 'Masukan Data Terlebih Dahulu';
         }
     }
-ob_end_flush();
-
 
     function Tax($TaxOrigin, $TaxDestination)
     {
