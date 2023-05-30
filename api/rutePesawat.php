@@ -146,7 +146,7 @@
 
         <div class="mt-4 p-5 text-white rounded" style="background-color: #2E4F4F;">
 
-            <form action="Tugas8_MuhamadRidhoArdian.php" method="post">
+            <form action="<?php $_SERVER['PHP_SELF ?>" method="post">
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
