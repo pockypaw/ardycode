@@ -89,12 +89,8 @@
     ]
 ];
     
-    // Convert data to JSON
-$jsonData = json_encode($data);
 
-// Set headers
-header('Content-Type: application/json');
 
 // Output the JSON
-echo $jsonData;
+var_dump($jsonData);
     ?>
