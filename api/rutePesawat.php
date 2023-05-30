@@ -108,7 +108,7 @@
 
         $tax = Tax($airportTax1, $airportTax2);
         $totalPrice = TotalPrice($tax, $hargaTiket);
-
+ob_start();
 
         if (isset($_POST['form-submit'])) {
             $data = [$namaMaskapai, $pilih1, $pilih2, $hargaTiket, $tax, $totalPrice];
@@ -116,7 +116,7 @@
             // $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
 
             // Membaca file awal
-            $originalData = file_get_contents("https://ardycode.vercel.app/api/dataPenerbangan.php");
+            $originalData = file_get_contents(__DIR__ . '/dataPenerbangan.php');
 
             // Mencari posisi untuk memasukkan array baru
             $position = strpos($originalData, ");");
@@ -144,7 +144,7 @@
             echo 'Masukan Data Terlebih Dahulu';
         }
     }
-
+ob_end_flush();
 
 
     function Tax($TaxOrigin, $TaxDestination)
