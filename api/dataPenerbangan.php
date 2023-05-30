@@ -93,4 +93,4 @@
 
 // Output the JSON
 var_dump($data);
-    ?>
+ ?>
