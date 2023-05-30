@@ -116,7 +116,7 @@
             // $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
 
             // Membaca file awal
-            $originalData = file_get_contents("__DIR__ . '/dataPenerbangan.php'");
+            $originalData = file_get_contents("https://ardycode.vercel.app/api/dataPenerbangan.php");
 
             // Mencari posisi untuk memasukkan array baru
             $position = strpos($originalData, ");");
@@ -129,7 +129,7 @@
                 $appendedData = substr_replace($originalData, $newArrayCode, $position, 0);
 
                 // Menulis data yang telah dimodifikasi ke dalam file
-                file_put_contents("__DIR__ . '/dataPenerbangan.php'", $appendedData);
+                file_put_contents(__DIR__ . '/dataPenerbangan.php', $appendedData);
 
                 echo "Array berhasil dimasukkan.";
             } else {
@@ -138,7 +138,7 @@
 
             // Menyimpan data ke dalam dataPenerbangan.json
             // $dataPenerbangan = file_put_contents($file, $jsonfile);
-            header("Location: " . "__DIR__ . '/rutePesawat.php'");
+            header("Location: " . "https://ardycode.vercel.app/api/rutePesawat.php");
             exit();
         } else {
             echo 'Masukan Data Terlebih Dahulu';
