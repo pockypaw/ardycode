@@ -33,7 +33,7 @@
     $hargaTiket = '';
 
     // File json yang akan dibaca (full path file)
-    $file = "https://ardycode.vercel.app/api/dataPenerbangan.php";
+    $file = "/api/dataPenerbangan.php";
 
     // Mendapatkan file json
     $dataPenerbangan = file_get_contents($file);
