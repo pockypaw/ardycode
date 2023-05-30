@@ -31,7 +31,7 @@
     $hargaTiket = '';
 
     // File json yang akan dibaca (full path file)
-    $file = "dataPenerbangan.json";
+    $file = "/api/dataPenerbangan.json";
 
     // Mendapatkan file json
     $dataPenerbangan = file_get_contents($file);
