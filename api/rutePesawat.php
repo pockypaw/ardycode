@@ -33,8 +33,7 @@
     $hargaTiket = '';
 
     // File json yang akan dibaca (full path file)
-    $file = "/var/task/user/api/dataPenerbangan.php";
-
+    $file = __DIR__ . "/api/dataPenerbangan.php";
     // Mendapatkan file json
     $dataPenerbangan = file_get_contents($file);
 
@@ -117,7 +116,7 @@
             // $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
 
             // Membaca file awal
-            $originalData = file_get_contents("https://ardycode.vercel.app/api/dataPenerbangan.php");
+            $originalData = file_get_contents("__DIR__ . '/api/dataPenerbangan.php'");
 
             // Mencari posisi untuk memasukkan array baru
             $position = strpos($originalData, ");");
@@ -130,7 +129,7 @@
                 $appendedData = substr_replace($originalData, $newArrayCode, $position, 0);
 
                 // Menulis data yang telah dimodifikasi ke dalam file
-                file_put_contents("https://ardycode.vercel.app/api/dataPenerbangan.php", $appendedData);
+                file_put_contents("__DIR__ . '/api/dataPenerbangan.php'", $appendedData);
 
                 echo "Array berhasil dimasukkan.";
             } else {
