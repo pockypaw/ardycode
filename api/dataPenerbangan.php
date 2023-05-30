@@ -92,5 +92,5 @@
 
 
 // Output the JSON
-var_dump($jsonData);
+var_dump($data);
     ?>
