@@ -33,7 +33,8 @@
     $hargaTiket = '';
 
     // File json yang akan dibaca (full path file)
-    $file = 'https://ardycode.vercel.app/api/dataPenerbangan.php';
+    $file = "dataPenerbangan.json";
+
     // Mendapatkan file json
     $dataPenerbangan = file_get_contents($file);
 
@@ -55,7 +56,8 @@
         $result[] = $obj;
     }
 
-    $airport = [
+
+    $airportOrigin = [
         [
             'Airport Name' => 'Soekarno-Hatta (CGK)',
             'Airport Tax' => 50000
@@ -69,7 +71,10 @@
         ], [
             'Airport Name' => 'Juanda (SUB)',
             'Airport Tax' => 40000
-        ],
+        ]
+    ];
+
+    $airportDestination =  [
         [
             'Airport Name' => 'Ngurah Rai (DPS)',
             'Airport Tax' => 80000
@@ -85,6 +90,7 @@
             'Airport Tax' => 70000
         ]
     ];
+    $airport = array_merge($airportOrigin, $airportDestination);
     $keys = array_keys($airport);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -109,40 +115,22 @@
         $tax = Tax($airportTax1, $airportTax2);
         $totalPrice = TotalPrice($tax, $hargaTiket);
 
-        if (isset($_POST['form-submit'])) {
-            $data = [$namaMaskapai, $pilih1, $pilih2, $hargaTiket, $tax, $totalPrice];
+
+        if (isset($_POST['form-kirim'])) {
+            $data[] = [$namaMaskapai, $pilih1, $pilih2, $hargaTiket, $tax, $totalPrice];
             // Mengencode data menjadi JSON
-            // $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
-
-            // Membaca file awal
-            $originalData = file_get_contents(__DIR__ . '/dataPenerbangan.php');
-
-            // Mencari posisi untuk memasukkan array baru
-            $position = strpos($originalData, ");");
-
-            if ($position !== false) {
-                // Konstruksi kode untuk array baru
-                $newArrayCode = ", " . var_export($data, true);
-
-                // Menyisipkan array baru ke dalam data awal
-                $appendedData = substr_replace($originalData, $newArrayCode, $position, 0);
-
-                // Menulis data yang telah dimodifikasi ke dalam file
-                file_put_contents(__DIR__ . '/dataPenerbangan.php', $appendedData);
-
-                echo "Array berhasil dimasukkan.";
-            } else {
-                echo "Gagal menemukan posisi untuk memasukkan array.";
-            }
+            $jsonfile = json_encode($data, JSON_PRETTY_PRINT);
 
             // Menyimpan data ke dalam dataPenerbangan.json
-            // $dataPenerbangan = file_put_contents($file, $jsonfile);
-            header("Location: " . "https://ardycode.vercel.app/api/rutePesawat.php");
+            $dataPenerbangan = file_put_contents($file, $jsonfile);
+            header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         } else {
             echo 'Masukan Data Terlebih Dahulu';
         }
     }
+
+
 
     function Tax($TaxOrigin, $TaxDestination)
     {
@@ -184,7 +172,7 @@
                                 <select name="pilih1" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="dropdown-menu">
                                         <?php
-                                        foreach ($airport as $bandara) {
+                                        foreach ($airportOrigin as $bandara) {
                                         ?>
                                             <option class="dropdown-item" value="<?php echo $bandara['Airport Name']; ?>">
                                                 <?php echo $bandara['Airport Name']; ?>
@@ -199,7 +187,7 @@
                                 <select name="pilih2" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="dropdown-menu">
                                         <?php
-                                        foreach ($airport as $bandara) {
+                                        foreach ($airportDestination as $bandara) {
                                         ?>
                                             <option class="dropdown-item" value="<?php echo $bandara['Airport Name']; ?>">
                                                 <?php echo $bandara['Airport Name']; ?>
@@ -214,7 +202,7 @@
                 </div>
 
 
-                <input type="submit" name="form-submit" class="form-control text-light" style="background-color: #0E8388;">
+                <input type="submit" name="form-kirim" class="form-control text-light" style="background-color: #0E8388;">
 
         </div>
         </form>
@@ -222,40 +210,82 @@
             <center>
                 <h3 style="color:#2C3333; margin-bottom:3%;">RUTE PENERBANGAN YANG TERSEDIA</h3>
             </center>
-            <table id="example" class="display table table-success table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Airline</th>
-                        <th scope="col">Origin</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Price Ticket</th>
-                        <th scope="col">Tax</th>
-                        <th scope="col">Total Price</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1;
-                    for ($i = 0; $i < count($result); $i++) { ?>
+            <div class='table-responsive'>
+                <table id="example" class="display table table-success table-striped">
+                    <thead>
                         <tr>
-                            <th scope="row"><?php echo $no++; ?></th>
-                            <td><?php echo $result[$i]->airline ?></td>
-                            <td><?php echo $result[$i]->origin ?></td>
-                            <td><?php echo $result[$i]->destination ?></td>
-                            <td><?php echo $result[$i]->price ?></td>
-                            <td><?php echo $result[$i]->tax ?></td>
-                            <td><?php echo $result[$i]->total ?></td>
+                            <th scope="col">#</th>
+                            <th scope="col">Airline</th>
+                            <th scope="col">Origin</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Price Ticket</th>
+                            <th scope="col">Tax</th>
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Action</th>
+
                         </tr>
-                    <?php }
+                    </thead>
+                    <form action="" method="GET">
+                        <tbody>
+                            <?php
+                            $index = 0;
+                            $no = 1;
+                            for ($i = 0; $i < count($result); $i++) {
+                            ?>
+                                <tr>
+                                    <th scope="row"><?php echo $no++; ?></th>
+                                    <td><?php echo $result[$i]->airline ?></td>
+                                    <td><?php echo $result[$i]->origin ?></td>
+                                    <td><?php echo $result[$i]->destination ?></td>
+                                    <td><?php echo $result[$i]->price ?></td>
+                                    <td><?php echo $result[$i]->tax ?></td>
+                                    <td><?php echo $result[$i]->total ?></td>
+                                    <td>
+                                        <a href="<?php echo $_SERVER['PHP_SELF'] . '?index=' . $i; ?>" onclick="return confirm('Apa kamu yakin ingin menghapus item ini ?')">
+                                            <button type="button" class="form-control text-light" style="background-color: #0E8388;">Hapus</button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </form>
+
+                    <?php
+
+                    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                        $data = json_decode($dataPenerbangan, true);
+                        if (isset($_GET['index'])) {
+                            $index = $_GET['index'];
+                            if (isset($data[0])) {
+                                unset($data[0]);
+
+                                // Reindex the array to fix the keys
+                                $data = array_values($data);
+
+                                // Convert the updated array back to JSON
+                                $dataPenerbangan = json_encode($data, JSON_PRETTY_PRINT);
+
+                                // Write the JSON data back to the file
+                                file_put_contents('dataPenerbangan.json', $dataPenerbangan);
+
+                                echo '<div class="alert alert-danger" role="alert">Data yang dipilih sudah terhapus</div>';
+                                echo '<script>setTimeout(function() {window.location.href = "Tugas8_MuhamadRidhoArdian.php";}, 3000);</script>';
+                            }
+                        }
+                    }
+
 
                     ?>
-                </tbody>
-            </table>
 
+                    </tbody>
+                </table>
+
+            </div>
+            <center><h6 style="color:#2C3333;">@Created by Muhamad Ridho Ardian</h6></center>
         </div>
+        
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
@@ -264,7 +294,6 @@
             $('#example').DataTable();
         });
     </script>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
