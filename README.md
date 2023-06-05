@@ -32,4 +32,4 @@ Daftar Rute Penerbangan dibuat dengan teknologi
 - index.php
 
 ## Credit
-- Ardy
+- Muhamad Ridho Ardian
