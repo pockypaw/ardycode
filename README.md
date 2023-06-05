@@ -16,7 +16,7 @@ Daftar rute penerbangan adalah perjalanan udara yang menghubungkan dua atau lebi
 
 ## Tech requirement
 
-Simple Calculator dibuat dengan teknologi
+Daftar Rute Penerbangan dibuat dengan teknologi
 
 - PHP 
 - BOOSTRAP
