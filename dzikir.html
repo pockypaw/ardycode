@@ -36,6 +36,11 @@
     <script>
       let i = 0;
       let y = 0;
+      function Speak() {
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = "Selamat anda sudah berdzikir sebanyak 3 kali";
+        return window.speechSynthesis.speak(msg);
+      }
       const hasilHitungDiv = document.getElementById('hasil-hitung');
       const selamat = document.getElementById('selamat');
       const Listen = document.getElementById('listen');
@@ -50,6 +55,7 @@
             hasilHitungDiv.textContent = `${command} Alhamdulillah ${i}`;
             if (Number(i) === 3) {
                     selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${i} kali hari ini!`;
+                    Speak();
                 }
           }
           if(command === "استغفرالله"){
@@ -58,6 +64,7 @@
             hasilHitungDiv.textContent = `${command} Astaghfirullah ${y}`;
             if (Number(y) === 3) {
                     selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${y} kali hari ini!`;
+                    Speak();
                 }
           }
           // alert("Command recognized: " + command);
