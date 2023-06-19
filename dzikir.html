@@ -33,7 +33,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
     <script type="application/javascript" src="script.js"></script>
     <script>
-      let i,y = 0;
+      let i = 0;
+      let y = 0;
       const hasilHitungDiv = document.getElementById('hasil-hitung');
       const selamat = document.getElementById('selamat');
       if (annyang) {
@@ -48,7 +49,7 @@
           }
           if(command === "astaghfirullah" || command ==='Astaghfirullah'){
             y+=1;
-            console.log(`${command} ${i}`);
+            console.log(`${command} ${y}`);
             hasilHitungDiv.textContent = `${command} ${y}`;
           }
           // alert("Command recognized: " + command);
