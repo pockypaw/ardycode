@@ -10,6 +10,7 @@
     <div id="result"></div>
     <div id="hasil-hitung"></div>
     <div id="selamat"></div>
+    <div id="listen"></div>
     <!-- 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
     <script>
@@ -37,6 +38,7 @@
       let y = 0;
       const hasilHitungDiv = document.getElementById('hasil-hitung');
       const selamat = document.getElementById('selamat');
+      const Listen = document.getElementById('listen');
       if (annyang) {
         // Add our commands to annyang
         
@@ -53,7 +55,7 @@
             hasilHitungDiv.textContent = `${command} ${y}`;
           }
           // alert("Command recognized: " + command);
-          console.log(`${command}`);
+          listen.textContent = `yang terdengar ${command}`;
           if (Number(i) === 3) {
                     selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${i} kali hari ini!`;
                 }
