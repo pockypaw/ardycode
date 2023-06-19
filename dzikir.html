@@ -44,15 +44,15 @@
         
         annyang.addCallback('result', function(phrases) {
           var command = phrases[0].replace(/\s/g, '');
-          if(command === "alhamdulillah" || command ==='Alhamdulillah'){
+          if(command === "الحمدلله"){
             i+=1;
             console.log(`${command} ${i}`);
-            hasilHitungDiv.textContent = `${command} ${i}`;
+            hasilHitungDiv.textContent = `${command} Alhamdulillah ${i}`;
           }
-          if(command === "astaghfirullah" || command ==='Astaghfirullah'){
+          if(command === "استغفرالله"){
             y+=1;
             console.log(`${command} ${y}`);
-            hasilHitungDiv.textContent = `${command} ${y}`;
+            hasilHitungDiv.textContent = `${command} Astaghfirullah ${y}`;
           }
           // alert("Command recognized: " + command);
           listen.textContent = `yang terdengar ${command}`;
