@@ -131,7 +131,7 @@
           var command = phrases[0].replace(/\s/g, "");
           if (command === "الحمدلله") {
             dzikir1 += 1;
-            _dzikir1.textContent = `${command} Alhamdulillah ${dzikir1}`;
+            _dzikir1.textContent = `${command} ${dzikir1}`;
             if (Number(dzikir1) === 33) {
               _dzikir1.textContent = `Selamat, Anda sudah berdzikir sebanyak ${dzikir1} kali hari ini!`;
               Speak();
@@ -139,7 +139,7 @@
           }
           if (command === "استغفرالله") {
             dzikir2 += 1;
-            _dzikir2.textContent = `${command} Astaghfirullah ${dzikir2}`;
+            _dzikir2.textContent = `${command} ${dzikir2}`;
             if (Number(dzikir2) === 33) {
               _dzikir2.textContent = `Selamat, Anda sudah berdzikir sebanyak ${dzikir2} kali hari ini!`;
               Speak();
@@ -148,7 +148,7 @@
           // alert("Command recognized: " + command);
           if (command === "استغفراللهالعظيمالذيلاالهالاهوالحيالقيومواتوباليه") {
             dzikir3 += 1;
-            _dzikir3.textContent = `${command} Astaghfirullah ${dzikir3}`;
+            _dzikir3.textContent = `${command} ${dzikir3}`;
             if (Number(dzikir3) === 3) {
               _dzikir3.textContent = `Selamat, Anda sudah berdzikir sebanyak ${dzikir3} kali hari ini!`;
               Speak();
