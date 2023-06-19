@@ -106,15 +106,15 @@ label#skitt-toggle-button__label {
     font-size: 25px;
   }
   #skitt-toggle-button {
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     background-position: 11.2px 9.6px;
   }
   #skitt-listening-box {
-    line-height: 80px;
+    line-height: 65px;
   }
   #skitt-listening-text {
-    height: 80px;
+    height: 30px;
   }
 }
 /*# sourceMappingURL=flat.css.map */
