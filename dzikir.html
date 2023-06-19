@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voice Input Demo</title>
+  </head>
+  <body>
+    <h1>Voice Input Demo Test</h1>
+
+    <div id="result"></div>
+    <div id="hasil-hitung"></div>
+    <div id="selamat"></div>
+    <!-- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script>
+      let i = 0;
+      if (annyang) {
+        // Let's define a command.
+        const commands = {
+          apa: () => {
+            i+= 1
+            console.log(i, JSON.stringify(annyang));
+          },
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening.
+        annyang.start();
+      }
+    </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script type="application/javascript" src="script.js"></script>
+    <script>
+      let i = 0;
+      const hasilHitungDiv = document.getElementById('hasil-hitung');
+      const selamat = document.getElementById('selamat');
+      if (annyang) {
+        // Add our commands to annyang
+        
+        annyang.addCallback('result', function(phrases) {
+          var command = phrases[0].replace(/\s/g, '');
+          if(command === "alhamdulillah" || command ==='Alhamdulillah'){
+            i+=1;
+            console.log(`${command} ${i}`);
+            hasilHitungDiv.textContent = `${command} ${i}`;
+          }
+          // alert("Command recognized: " + command);
+          console.log(`${command}`);
+          if (Number(i) === 3) {
+                    selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${i} kali hari ini!`;
+                }
+        });
+    
+        // Tell KITT to use annyang
+        SpeechKITT.annyang();
+    
+        // Define a stylesheet for KITT to use
+        SpeechKITT.setStylesheet(
+          "https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css"
+        );
+    
+        // Render KITT's interface
+        SpeechKITT.vroom();
+      }
+    </script>
+    
+    
+  </body>
+</html>
