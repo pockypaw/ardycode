@@ -48,17 +48,21 @@
             i+=1;
             console.log(`${command} ${i}`);
             hasilHitungDiv.textContent = `${command} Alhamdulillah ${i}`;
+            if (Number(i) === 3) {
+                    selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${i} kali hari ini!`;
+                }
           }
           if(command === "استغفرالله"){
             y+=1;
             console.log(`${command} ${y}`);
             hasilHitungDiv.textContent = `${command} Astaghfirullah ${y}`;
+            if (Number(y) === 3) {
+                    selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${y} kali hari ini!`;
+                }
           }
           // alert("Command recognized: " + command);
           listen.textContent = `yang terdengar ${command}`;
-          if (Number(i) === 3) {
-                    selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${i} kali hari ini!`;
-                }
+          
         });
     
         // Tell KITT to use annyang
