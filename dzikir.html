@@ -1,95 +1,181 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dzikir Online</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
   </head>
-  <body>
-    <h1>Dzikir Online</h1>
-    <h2>create by Edo</h2>
-    <div id="result"></div>
-    <div id="hasil-hitung"></div>
-    <div id="selamat"></div>
-    <div id="listen"></div>
-    <h3>Astaghfirulloh al-adziim alladzii laa ilaha illaa huwal hayyul qayyuumu wa atuubu ilaih.</h3>
-    <!-- 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
-    <script>
-      let i = 0;
-      if (annyang) {
-        // Let's define a command.
-        const commands = {
-          apa: () => {
-            i+= 1
-            console.log(i, JSON.stringify(annyang));
-          },
-        };
+  <body style="background-color: #f7ffe5">
+    <div class="container">
+      <div
+        class="mt-4 p-5 rounded"
+        style="background-color: #85a389; color: #f7ffe5"
+      >
+        <h1>Dzikir Online</h1>
+        <p>untuk amal kita</p>
+        <div id="result"></div>
+        <div
+          id="listen"
+          style="background-color: #85a389; color: #f7ffe5"
+        ></div>
+      </div>
 
-        // Add our commands to annyang
-        annyang.addCommands(commands);
+      <div id="selamat"></div>
+      <div id="listen"></div>
+      <div class="container">
+        <div class="row" style="text-align: center">
+          <div
+            class="m-3 p-4 rounded col"
+            style="background-color: #85a389; color: #f7ffe5"
+          >
+            <h6>Alhamdulillah</h6>
+            <div
+              id="dzikir1"
+              class="rounded"
+              style="background-color: #3b503e; color: #f7ffe5"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="m-3 p-4 rounded col"
+            style="background-color: #85a389; color: #f7ffe5"
+          >
+            <h6>Astaghfirullah</h6>
+            <div
+              id="dzikir2"
+              class="rounded"
+              style="background-color: #3b503e; color: #f7ffe5"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="m-3 p-4 rounded col"
+            style="background-color: #85a389; color: #f7ffe5"
+          >
+            <h6>
+              Astaghfirulloh al-adziim alladzii laa ilaha illaa huwal hayyul
+              qayyuumu wa atuubu ilaih.
+            </h6>
+            <div
+              id="dzikir2"
+              class="rounded"
+              style="background-color: #3b503e; color: #f7ffe5"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="m-3 p-4 rounded col"
+            style="background-color: #85a389; color: #f7ffe5"
+          >
+            <h6>masih pengembangan</h6>
+            <div
+              class="rounded"
+              style="background-color: #3b503e; color: #f7ffe5"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="m-3 p-4 rounded col"
+            style="background-color: #85a389; color: #f7ffe5"
+          >
+            <h6>masih pengembangan</h6>
+            <div
+              class="rounded"
+              style="background-color: #3b503e; color: #f7ffe5"
+            >
+              0
+            </div>
+          </div>
+          <div
+            class="m-3 p-4 rounded col"
+            style="background-color: #85a389; color: #f7ffe5"
+          >
+            <h6>masih pengembangan</h6>
+            <div
+              class="rounded"
+              style="background-color: #3b503e; color: #f7ffe5"
+            >
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        // Start listening.
-        annyang.start();
-      }
-    </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
     <script type="application/javascript" src="script.js"></script>
     <script>
-      let i = 0;
-      let y = 0;
+      let dzikir1 = 0;
+      let dzikir2 = 0;
       function Speak() {
         const msg = new SpeechSynthesisUtterance();
         msg.text = "Selamat anda sudah berdzikir sebanyak 3 kali";
         return window.speechSynthesis.speak(msg);
       }
-      const hasilHitungDiv = document.getElementById('hasil-hitung');
-      const selamat = document.getElementById('selamat');
-      const Listen = document.getElementById('listen');
+      const _dzikir1 = document.getElementById("dzikir1");
+      const _dzikir2 = document.getElementById("dzikir2");
+      const _dzikir3 = document.getElementById("dzikir3");
+      const Listen = document.getElementById("listen");
       if (annyang) {
         // Add our commands to annyang
-        
-        annyang.addCallback('result', function(phrases) {
-          var command = phrases[0].replace(/\s/g, '');
-          if(command === "الحمدلله"){
-            i+=1;
-            console.log(`${command} ${i}`);
-            hasilHitungDiv.textContent = `${command} Alhamdulillah ${i}`;
-            if (Number(i) === 3) {
-                    selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${i} kali hari ini!`;
-                    Speak();
-                }
+
+        annyang.addCallback("result", function (phrases) {
+          var command = phrases[0].replace(/\s/g, "");
+          if (command === "الحمدلله") {
+            dzikir1 += 1;
+            _dzikir1.textContent = `${command} Alhamdulillah ${dzikir1}`;
+            if (Number(dzikir1) === 3) {
+              _dzikir1.textContent = `Selamat, Anda sudah berdzikir sebanyak ${dzikir1} kali hari ini!`;
+              Speak();
+            }
           }
-          if(command === "استغفرالله"){
-            y+=1;
-            console.log(`${command} ${y}`);
-            hasilHitungDiv.textContent = `${command} Astaghfirullah ${y}`;
-            if (Number(y) === 3) {
-                    selamat.textContent = `Selamat, Anda sudah berdzikir sebanyak ${y} kali hari ini!`;
-                    Speak();
-                }
+          if (command === "استغفرالله") {
+            dzikir2 += 1;
+            _dzikir2.textContent = `${command} Astaghfirullah ${dzikir2}`;
+            if (Number(dzikir2) === 3) {
+              _dzikir2.textContent = `Selamat, Anda sudah berdzikir sebanyak ${dzikir2} kali hari ini!`;
+              Speak();
+            }
           }
           // alert("Command recognized: " + command);
-          if(command === "استغفراللهالعظيمالذيلاالهالاهوالحيالقيومواتوباليه"){
-          hasilHitungDiv.textContent = `Bacaan benar`;
+          if (command === "استغفراللهالعظيمالذيلاالهالاهوالحيالقيومواتوباليه") {
+            dzikir3 += 1;
+            _dzikir3.textContent = `${command} Astaghfirullah ${dzikir3}`;
+            if (Number(dzikir3) === 3) {
+              _dzikir3.textContent = `Selamat, Anda sudah berdzikir sebanyak ${dzikir3} kali hari ini!`;
+              Speak();
+            }
           }
           listen.textContent = `yang terdengar ${command}`;
-          
         });
-    
+
         // Tell KITT to use annyang
-        annyang.setLanguage('ar');
+        annyang.setLanguage("ar");
         SpeechKITT.annyang();
-        
+
         // Define a stylesheet for KITT to use
         SpeechKITT.setStylesheet(
           "https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css"
         );
-    
+
         // Render KITT's interface
         SpeechKITT.vroom();
       }
     </script>
-    
-    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
