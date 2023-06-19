@@ -89,15 +89,15 @@ label#skitt-toggle-button__label {
     font-size: 35px;
   }
   #skitt-toggle-button {
-    width: 125px;
-    height: 125px;
+    width: 50px;
+    height: 50px;
     background-position: 17.5px 15px;
   }
   #skitt-listening-box {
-    line-height: 125px;
+    line-height: 50px;
   }
   #skitt-listening-text {
-    height: 125px;
+    height: 50px;
   }
 }
 @media (max-width: 1200px) and (orientation: landscape) {
