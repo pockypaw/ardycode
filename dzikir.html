@@ -148,7 +148,7 @@
           // alert("Command recognized: " + command);
           if (command === "استغفراللهالعظيمالذيلاالهالاهوالحيالقيومواتوباليه") {
             dzikir3 += 1;
-            _dzikir3.textContent = `${command} ${dzikir3}`;
+            _dzikir3.textContent = `${command} <br> ${dzikir3}`;
             if (Number(dzikir3) === 3) {
               _dzikir3.textContent = `Selamat, Anda sudah berdzikir sebanyak ${dzikir3} kali hari ini!`;
               Speak();
