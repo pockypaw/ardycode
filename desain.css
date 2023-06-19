@@ -60,10 +60,10 @@ label#skitt-toggle-button__label {
   background-color: #3498db;
 }
 #skitt-listening-box {
-  float: center;
+  float: left;
   display: inline-block;
   line-height: 50px;
-  height: 50%;
+  height: 100%;
   color: #fff;
 }
 #skitt-listening-text {
@@ -75,7 +75,7 @@ label#skitt-toggle-button__label {
   width: 0;
 }
 .skitt-ui--listening #skitt-listening-text {
-  width: 50%;
+  width: 100%;
   -webkit-transition: width 1s ease-in-out;
   margin: 0 25px 0 15px;
 }
@@ -89,15 +89,15 @@ label#skitt-toggle-button__label {
     font-size: 35px;
   }
   #skitt-toggle-button {
-    width: 60px;
-    height: 60px;
+    width: 125px;
+    height: 125px;
     background-position: 17.5px 15px;
   }
   #skitt-listening-box {
-    line-height: 60px;
+    line-height: 125px;
   }
   #skitt-listening-text {
-    height: 60px;
+    height: 125px;
   }
 }
 @media (max-width: 1200px) and (orientation: landscape) {
