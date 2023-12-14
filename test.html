@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speech-to-Text</title>
+</head>
+<body>
+  <button id="startBtn">Start Recording</button>
+  <p id="output"></p>
+
+  <script>
+    const output = document.getElementById('output');
+    const startBtn = document.getElementById('startBtn');
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    let finalTranscript = '';
+
+    recognition.onstart = function() {
+      console.log('Speech recognition started');
+    };
+
+    recognition.onresult = function(event) {
+      let interimTranscript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript + ' ';
+        } else {
+          interimTranscript += transcript;
+        }
+      }
+      output.innerHTML = finalTranscript + '<span style="color: gray;">' + interimTranscript + '</span>';
+    };
+
+    recognition.onerror = function(event) {
+      console.error('Speech recognition error:', event.error);
+    };
+
+    startBtn.addEventListener('click', function() {
+      finalTranscript = '';
+      output.innerHTML = '';
+      recognition.start();
+    });
+
+    recognition.onend = function() {
+      console.log('Speech recognition ended');
+    };
+  </script>
+</body>
+</html>
